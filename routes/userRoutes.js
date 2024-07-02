@@ -1,0 +1,15 @@
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/userController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const carsController = require('../controllers/carsController');
+router.post('/register', userController.register);
+router.post('/login', userController.login);
+router.get('/profile', authMiddleware, userController.getUser);
+router.put('/profile', authMiddleware, userController.updateUser);
+router.delete('/profile', authMiddleware, userController.deleteUser);
+router.post('/addCar', carsController.addCar);
+router.get('/list', carsController.getCar);
+router.put('/updateCar', carsController.updateCar);
+router.delete('/deleteCar', carsController.deleteCar);
+module.exports = router;
